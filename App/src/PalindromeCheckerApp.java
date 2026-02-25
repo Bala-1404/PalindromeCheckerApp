@@ -1,5 +1,5 @@
 
-import java.util.LinkedList;
+
 import java.util.Scanner;
 
 public class PalindromeCheckerApp {
@@ -7,32 +7,21 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
 
-
                 Scanner sc = new Scanner(System.in);
-                System.out.print("Enter a string: ");
-                String input = sc.nextLine();
+                System.out.print("Input : ");
+                String s = sc.nextLine();
 
-                LinkedList<Character> list = new LinkedList<>();
+                boolean result = check(s, 0, s.length() - 1);
+                System.out.println("Is Palindrome? : " + result);
+            }
 
-                for (char c : input.toCharArray()) {
-                    list.add(c);
-                }
+            private static boolean check(String s, int start, int end) {
+                if (start >= end)
+                    return true;
 
-                boolean isPalindrome = true;
+                if (s.charAt(start) != s.charAt(end))
+                    return false;
 
-                while (list.size() > 1) {
-                    if (!list.removeFirst().equals(list.removeLast())) {
-                        isPalindrome = false;
-                        break;
-                    }
-                }
-
-                if (isPalindrome) {
-                    System.out.println("Palindrome");
-                } else {
-                    System.out.println("Not Palindrome");
-                }
-
-                sc.close();
+                return check(s, start + 1, end - 1);
             }
         }
